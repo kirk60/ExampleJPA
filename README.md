@@ -1,6 +1,7 @@
-Simple example
+Simple example of saving data to a Mysql table 
 
-Maven
-Hibernate
-JPA
-Lombok
+- Maven
+- MySql
+- Hibernate
+- JPA
+- Lombok
