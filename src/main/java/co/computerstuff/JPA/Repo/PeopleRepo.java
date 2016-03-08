@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import co.computerstuff.JPA.Entities.People;
+import co.computerstuff.telosys.Entities.jpa.PeopleEntity;
 import lombok.extern.java.Log;
 /**
  * 
@@ -23,8 +24,8 @@ import lombok.extern.java.Log;
 @Log
 public class PeopleRepo {
 
-	private EntityManagerFactory factory = null;
-	private EntityManager entityManager = null;
+	private static EntityManagerFactory factory = null ;
+	private static EntityManager entityManager = null;
 	
 	private static PeopleRepo peopleRep = null;
 	
@@ -36,24 +37,18 @@ public class PeopleRepo {
 	}
 
 	public PeopleRepo(){
+		
 		try {
 			factory = Persistence.createEntityManagerFactory("jpa-example");
 			entityManager = factory.createEntityManager();
 		} catch (Exception e) {
 			log.log(Level.SEVERE, e.getMessage(), e);
 			e.printStackTrace();
-		} finally {
-			if (entityManager != null) {
-				entityManager.close();
-			}
-			if (factory != null) {
-				factory.close();
-			}
 		}
 	}
 
 	public void save(People person) {
-
+		
 		EntityTransaction transaction = entityManager.getTransaction();
 		try {
 			transaction.begin();
@@ -64,6 +59,16 @@ public class PeopleRepo {
 				transaction.rollback();
 			}
 		}
+		
 	}
-	
+
+	public void close() {
+		if(entityManager != null){
+			entityManager.close();
+		}
+		if(factory != null){
+			factory.close();
+		}
+	}
+
 }

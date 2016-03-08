@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import co.computerstuff.JPA.Entities.People;
-import co.computerstuff.JPA.Repo.PeopleRepo;
+import co.computerstuff.telosys.Entities.jpa.PeopleEntity;
 
 
 public class testPeople {
